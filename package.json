@@ -1,0 +1,29 @@
+{
+  "name": "cursor-settings-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint": "biome lint --write .",
+    "lint:check": "biome lint .",
+    "check": "biome check --write .",
+    "check:ci": "biome check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taiga-K/cursor-settings-docs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/taiga-K/cursor-settings-docs/issues"
+  },
+  "homepage": "https://github.com/taiga-K/cursor-settings-docs#readme",
+  "devDependencies": {
+    "@biomejs/biome": "2.2.5"
+  }
+}
