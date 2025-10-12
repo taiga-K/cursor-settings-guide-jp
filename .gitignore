@@ -12,7 +12,4 @@ build/
 .env.local
 coverage/
 
-# tools
-.cursor/
-
 

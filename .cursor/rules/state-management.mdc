@@ -1,0 +1,117 @@
+---
+description: "State management guidelines and best practices for React applications"
+alwaysApply: false
+---
+# 🗃️ State Management Guidelines
+
+状態管理は、アプリケーションのパフォーマンスを最適化するために重要です。すべての状態情報を単一の集中化されたリポジトリに格納するのではなく、使用方法に基づいてさまざまなカテゴリに分割することを検討してください。状態を分類することで、状態管理プロセスを合理化し、アプリケーション全体の効率を向上させることができます。
+
+## Component State（コンポーネント状態）
+
+コンポーネント状態は個々のコンポーネントに固有であり、グローバルに共有されるべきではありません。必要に応じて、子コンポーネントにpropsとして渡すことができます。
+
+### 実装ガイドライン
+
+- 通常、コンポーネント内で状態を定義することから始め、アプリケーションの他の場所で必要になった場合は、より高いレベルに移すことを検討してください
+- コンポーネント状態を管理する際は、以下のReact hooksを使用してください：
+
+#### `useState` の使用
+- 独立したシンプルな状態の場合に使用
+
+#### `useReducer` の使用
+- 複数の状態を単一のアクションで更新する複雑な状態の場合に使用
+
+### ベストプラクティス
+- 状態はできる限りコンポーネントに近い場所に保持する
+- 不必要にグローバル化しない
+- 状態の責任を明確に分離する
+
+## Application State（アプリケーション状態）
+
+アプリケーション状態は、グローバルモーダルの制御、通知、カラーモードの切り替えなど、アプリケーションのグローバルな部分を管理します。
+
+### 実装ガイドライン
+
+最適なパフォーマンスとメンテナンスの容易さを確保するために、必要とするコンポーネントにできるだけ近い場所に状態をローカライズすることをお勧めします。
+
+### 推奨ソリューション
+
+- **Context + Hooks**: [React Context](https://react.dev/learn/passing-data-deeply-with-context) + [React Hooks](https://react.dev/reference/react-dom/hooks)
+- **Redux**: [Redux](https://redux.js.org/) + [Redux Toolkit](https://redux-toolkit.js.org/)
+- **MobX**: [MobX](https://mobx.js.org)
+- **Zustand**: [Zustand](https://github.com/pmndrs/zustand)
+- **Jotai**: [Jotai](https://github.com/pmndrs/jotai)
+- **XState**: [XState](https://xstate.js.org/)
+
+### 適用例
+- グローバル通知の管理などの実装パターンを参照
+
+## Server Cache State（サーバーキャッシュ状態）
+
+サーバーキャッシュ状態は、サーバーから取得されたデータを将来の使用のためにクライアント側にローカルに保存することを指します。
+
+### 実装ガイドライン
+
+Reduxのような状態管理ストア内でリモートデータをキャッシュすることは可能ですが、より最適なソリューションが存在します。パフォーマンスを向上させ、データ取得プロセスを最適化するために、より効率的なキャッシュメカニズムを検討することが重要です。
+
+### 推奨ライブラリ
+
+- **TanStack Query (React Query)**: [TanStack Query](https://tanstack.com/query) - REST + GraphQL
+- **SWR**: [SWR](https://swr.vercel.app/) - REST + GraphQL
+- **Apollo Client**: [Apollo Client](https://www.apollographql.com/) - GraphQL
+- **URQL**: [URQL](https://formidable.com/open-source/urql/) - GraphQL
+- **RTK Query**: [RTK Query](https://redux-toolkit.js.org/rtk-query)
+
+## Form State（フォーム状態）
+
+フォームはあらゆるアプリケーションの重要な部分であり、フォーム状態を効果的に管理することは、シームレスなユーザーエクスペリエンスにとって不可欠です。
+
+### 制御された/制御されていないコンポーネント
+
+Reactのフォームは[制御された/制御されていない](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components)コンポーネントにすることができます。
+
+### 推奨ライブラリ
+
+- **React Hook Form**: [React Hook Form](https://react-hook-form.com/)
+- **Formik**: [Formik](https://formik.org/)
+- **React Final Form**: [React Final Form](https://github.com/final-form/react-final-form)
+
+### 実装ガイドライン
+
+1. ライブラリ機能をラップし、アプリケーションのニーズに適応した抽象化された`Form`コンポーネントとすべての入力フィールドコンポーネントを作成してください
+2. クライアントでの入力検証のために、検証ライブラリを統合してください
+
+### 推奨検証ライブラリ
+
+- **Zod**: [Zod](https://github.com/colinhacks/zod)
+- **Yup**: [Yup](https://github.com/jquense/yup)
+
+## URL State（URL状態）
+
+URL状態は、ブラウザのアドレスバー内で保存・操作されるデータを指します。
+
+### 実装ガイドライン
+
+この状態は一般的に以下の方法で管理されます：
+- **URLパラメータ**: `/app/${dynamicParam}`
+- **クエリパラメータ**: `/app?dynamicParam=1`
+
+### 推奨アプローチ
+
+react-router-domのようなルーティングソリューションを組み込むことで、URL状態を効果的にアクセス・制御し、ブラウザのアドレスバーから直接アプリケーションパラメータの動的操作を可能にします。
+
+## 全般的なベストプラクティス
+
+1. **状態の分類**: 使用方法に基づいて状態を適切なカテゴリに分類する
+2. **ローカライゼーション**: 状態をできる限り必要とするコンポーネントに近い場所に配置する
+3. **適切なツール選択**: 各状態タイプに最適なツールやライブラリを選択する
+4. **パフォーマンス最適化**: 不必要な再レンダリングを避け、効率的な状態更新を行う
+5. **保守性**: 状態の構造を明確に保ち、将来の変更に対応しやすくする
+
+## アンチパターン
+
+- すべての状態をグローバルに配置する
+- 単一の巨大な状態オブジェクトを作成する
+- 適切なキャッシュメカニズムなしでサーバーデータを管理する
+- フォーム状態を手動で管理する（ライブラリの活用を推奨）
+- URL状態を無視し、重要な情報をローカル状態のみに保存する
