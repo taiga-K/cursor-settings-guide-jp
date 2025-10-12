@@ -1,5 +1,5 @@
 ---
-description: *.ts
+globs: *.tsx,*.ts,*.js,*.jsx
 alwaysApply: false
 ---
 # 🚄 Performance Optimization Guidelines
