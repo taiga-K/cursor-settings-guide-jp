@@ -1,0 +1,8 @@
+{
+    "version": "1.0.0",
+    "hooks": {
+        "afterFileEdit": {
+            "command": "./hooks/lint.sh"
+        }
+    }
+}
