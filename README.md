@@ -1,22 +1,56 @@
 ## Cursor Settings Guide JP
 
-本プロジェクトでは、Cursor の設定ガイドを静的サイトとして提供します。実装にあたり、以下の技術スタックを採用します。
+Cursorエディタの設定項目を日本語で解説するリファレンスサイトです。
 
 ### 採用技術スタック
 
-- TypeScript / React
-- Next.js 14 (App Router)
-- Tailwind CSS
-- shadcn/ui
-- Zustand
-- React Hook Form + Zod
+- **TypeScript / React**: 型安全な開発環境
+- **Next.js 14 (App Router)**: モダンなReactフレームワーク
+- **Tailwind CSS v3**: ゼロランタイムのユーティリティファーストCSS
+- **clsx**: クラス名の条件付き結合
 
-### 採用理由
+### 主な特徴
 
-- **Next.js 14**: 静的サイト生成 (SSG)・コード分割・画像最適化を標準で備え、React + TypeScript のベストプラクティスに沿った開発が可能。
-- **Tailwind CSS**: ゼロランタイムでパフォーマンスガイドラインに反しないユーティリティファーストCSS。ダークテーマにも柔軟に対応。
-- **shadcn/ui**: Tailwind + Radix UI ベースのコード配布型コンポーネント。アクセシビリティを確保しつつ自由にカスタマイズ可能。
-- **Zustand**: 軽量・高速で、状態をローカルに保つというガイドラインに沿ったシンプルなストア構成が可能。
-- **React Hook Form + Zod**: 非制御コンポーネントで高パフォーマンスなフォーム管理と、型安全なバリデーションを両立。
+- ✅ **Compactリスト表示**: シンプルで見やすいリスト形式のみ実装
+- ✅ **Pro限定機能の明示**: テキストで「[Pro限定]」と表示（バッジ不使用）
+- ✅ **絵文字アイコンなし**: テキストベースのシンプルなデザイン
+- ✅ **レスポンシブ対応**: デスクトップ・モバイル両対応
+- ✅ **検索機能**: 日本語・英語・説明文・カテゴリでの部分一致検索
+- ✅ **アクセシビリティ**: 適切なランドマーク、ARIA属性、キーボード操作対応
 
-これらの選定は、パフォーマンス・状態管理・コンポーネント設計に関する `.cursor/rules/*.mdc` のガイドラインに準拠しています。
+### パフォーマンス・状態管理ガイドライン準拠
+
+本実装は `.cursor/rules/*.mdc` のガイドラインに準拠しています：
+
+- **State Management**: ローカル状態のみ使用（useState）、グローバルストアなし
+- **Performance**: useMemo/useCallbackによる最適化、型推論の活用
+- **Component Design**: 責務の明確な分離、必要最小限の再レンダリング
+
+### 開発
+
+```bash
+npm install
+npm run dev
+```
+
+http://localhost:3000 でアプリケーションが起動します。
+
+### ディレクトリ構成
+
+```
+/Users/k-taiga/Developer/cursor-settings-docs/
+├── app/
+│   ├── layout.tsx        # ルートレイアウト
+│   ├── page.tsx          # メインページ
+│   └── globals.css       # グローバルスタイル
+├── components/
+│   ├── SearchBar.tsx     # 検索バー
+│   ├── SidebarNav.tsx    # カテゴリナビゲーション
+│   └── SettingList.tsx   # 設定項目リスト
+├── lib/
+│   ├── types/
+│   │   └── settings.ts   # 型定義
+│   └── data/
+│       └── settings.ts   # 設定データ
+└── .cursor/rules/        # Cursorルール
+```
