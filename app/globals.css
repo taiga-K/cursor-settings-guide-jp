@@ -1,0 +1,18 @@
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind CSS directive */
+@tailwind base;
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind CSS directive */
+@tailwind components;
+/* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind CSS directive */
+@tailwind utilities;
+
+@layer base {
+  * {
+    /* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind CSS directive */
+    @apply border-border;
+  }
+
+  body {
+    /* biome-ignore lint/suspicious/noUnknownAtRules: Tailwind CSS directive */
+    @apply bg-background text-white;
+  }
+}
