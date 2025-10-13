@@ -29,7 +29,6 @@ http://localhost:3000 でアプリケーションが起動します。
 ### ディレクトリ構成
 
 ```
-/Users/k-taiga/Developer/cursor-settings-docs/
 ├── app/
 │   ├── layout.tsx        # ルートレイアウト
 │   ├── page.tsx          # メインページ
