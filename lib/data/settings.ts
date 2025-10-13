@@ -77,7 +77,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "GPT-4、Claude、その他のモデルから選択可能",
         "モデルによって応答速度と品質が異なります",
       ],
-      isPro: true,
     },
     {
       id: "chat-history",
@@ -98,7 +97,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "長いほど多くの情報を参照できますが、処理時間が増加します",
         "プロジェクトの規模に応じて調整してください",
       ],
-      isPro: true,
     },
     {
       id: "streaming",
@@ -141,7 +139,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "有効にするとより大きなコードブロックが提案されます",
         "関数全体やクラス全体の生成に便利です",
       ],
-      isPro: true,
     },
   ],
   models: [
@@ -164,7 +161,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "チャット、Tab補完、エージェントでそれぞれ異なるモデルを使用可能",
         "上級者向けの設定です",
       ],
-      isPro: true,
     },
     {
       id: "api-key",
@@ -187,7 +183,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "コードの問題を自動検出し、改善提案を行います",
         "リソース使用量が増加する可能性があります",
       ],
-      isPro: true,
     },
     {
       id: "agent-frequency",
@@ -198,7 +193,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "高頻度：リアルタイムに近い分析",
         "低頻度：CPUリソースを節約",
       ],
-      isPro: true,
     },
   ],
   "tools-mcp": [
@@ -211,7 +205,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "外部ツールやAPIとの統合を可能にします",
         "カスタムツールの追加に対応",
       ],
-      isPro: true,
     },
     {
       id: "tool-permissions",
@@ -244,7 +237,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "繰り返し同じ説明をする必要がなくなります",
         "長期的なプロジェクトで特に効果的",
       ],
-      isPro: true,
     },
   ],
   "indexing-docs": [
@@ -267,7 +259,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "README、Wiki、APIドキュメントなどを含めることができます",
         "より正確な回答が得られます",
       ],
-      isPro: true,
     },
   ],
   network: [
@@ -312,7 +303,6 @@ export const settingsData: Record<string, SettingItem[]> = {
         "新しいAIモデルや機能をいち早く試せます",
         "バグ報告にご協力ください",
       ],
-      isPro: true,
     },
   ],
   docs: [
