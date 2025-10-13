@@ -26,16 +26,16 @@ jobs:
           git config user.name "Cursor Agent"
           git config user.email "cursoragent@cursor.com"
 
-      - name: 計画を生成
+      - name: 計画を生成してIssueにコメント投稿
         env:
           CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
-          MODEL: gpt-5
+          MODEL: gpt-5          
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cursor-agent -p "GitHub Actionsランナー上で動作しています。
-          GitHub CLIはghとして利用可能で、GH_TOKENで認証されています。
+          GitHub CLIはghとして利用可能で、GH_TOKENで認証されています。          
           あなたにはリポジトリコンテンツの読み込み、issueコメントの書き込み権限のみ与えられています。
-
+          
           # コンテキスト
           Issue番号: ${{ github.event.issue.number }}
           Issueタイトル: ${{ github.event.issue.title }}
@@ -45,12 +45,13 @@ jobs:
           このIssueを解決するための計画を生成してください。
           実装にあたってリポジトリの必要な情報の取得、実装計画の立案はDeepWiki MCPを必ず使用して行ってください。
           DeepWiki MCPを使って調査したことはログに残しておくこと。
-
+      
           # 成果物
-          計画をMarkdown形式で生成し、${{ github.event.issue.number }}にコメントを投稿してください
+          計画をMarkdown形式で生成してください
           計画には以下の情報を含めてください：
           - 計画の概要
           - 計画の詳細
           - 計画の実行手順
           - 計画のテスト手順
-          - 計画のロールバック手順" --model "$MODEL" --output-format=text
+          - 計画のロールバック手順" --model "$MODEL" --output-format=text | \
+          gh issue comment ${{ github.event.issue.number }} --body-file -
