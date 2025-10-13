@@ -1,0 +1,55 @@
+name: Auto Issue Plan
+
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  generate_plan:
+    if: github.event.label.name == 'NeedsInvestigation'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v5
+
+      - name: Cursor CLIをインストール
+        run: |
+          curl https://cursor.com/install -fsSL | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: git identityを設定
+        run: |
+          git config user.name "Cursor Agent"
+          git config user.email "cursoragent@cursor.com"
+
+      - name: 計画を生成
+        env:
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+          MODEL: gpt-5
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cursor-agent -p "GitHub Actionsランナー上で動作しています。
+          GitHub CLIは`gh`として利用可能で、`GH_TOKEN`で認証されています。
+          あなたにはリポジトリコンテンツの読み込み、issueコメントの書き込み権限のみ与えられています。
+
+          # コンテキスト
+          Issue番号: ${{ github.event.issue.number }}
+          Issueタイトル: ${{ github.event.issue.title }}
+          Issue内容: ${{ github.event.issue.body }}
+          
+          # 目標
+          このIssueを解決するための計画を生成してください。
+          実装にあたってリポジトリの必要な情報の取得、実装計画の立案はDeepWiki MCPを必ず使用して行ってください。
+
+          # 成果物
+          計画をMarkdown形式で生成し、${{ github.event.issue.number }}にコメントを投稿してください
+          計画には以下の情報を含めてください：
+          - 計画の概要
+          - 計画の詳細
+          - 計画の実行手順
+          - 計画のテスト手順
+          - 計画のロールバック手順" --model "$MODEL" --output-format=text
