@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { SearchBar } from "@/components/SearchBar";
-import { SidebarNav } from "@/components/SidebarNav";
 import { SettingList } from "@/components/SettingList";
+import { SidebarNav } from "@/components/SidebarNav";
 import { categories, settingsData } from "@/lib/data/settings";
 
 export default function HomePage() {
@@ -13,7 +13,7 @@ export default function HomePage() {
 
   const currentCategoryName = useMemo(
     () => categories.find((c) => c.id === currentCategory)?.name || "",
-    [currentCategory]
+    [currentCategory],
   );
 
   const filteredItems = useMemo(() => {
@@ -25,7 +25,7 @@ export default function HomePage() {
       (item) =>
         item.nameJa.toLowerCase().includes(query) ||
         item.nameEn.toLowerCase().includes(query) ||
-        item.description.some((desc) => desc.toLowerCase().includes(query))
+        item.description.some((desc) => desc.toLowerCase().includes(query)),
     );
   }, [currentCategory, searchQuery]);
 
@@ -48,16 +48,13 @@ export default function HomePage() {
             <div className="flex items-center justify-between gap-4">
               {/* Mobile Menu Button */}
               <button
+                type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="lg:hidden text-white hover:bg-gray-800 p-2 rounded"
                 aria-label="メニュー"
                 aria-expanded={isMobileMenuOpen}
               >
-                {isMobileMenuOpen ? (
-                  <span>✕</span>
-                ) : (
-                  <span>≡</span>
-                )}
+                {isMobileMenuOpen ? <span>✕</span> : <span>≡</span>}
               </button>
 
               {/* Logo */}
@@ -66,9 +63,7 @@ export default function HomePage() {
                   C
                 </div>
                 <div>
-                  <h1 className="text-lg font-semibold">
-                    Cursor Settings Guide JP
-                  </h1>
+                  <h1 className="text-lg font-semibold">Cursor Settings Guide JP</h1>
                   <p className="text-xs text-gray-400">日本語設定リファレンス</p>
                 </div>
               </div>
@@ -105,6 +100,7 @@ export default function HomePage() {
             >
               <div className="mb-4">
                 <button
+                  type="button"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-white hover:bg-gray-800 p-2 rounded"
                   aria-label="閉じる"
@@ -173,4 +169,3 @@ export default function HomePage() {
     </div>
   );
 }
-

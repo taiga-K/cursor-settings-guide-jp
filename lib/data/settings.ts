@@ -328,4 +328,3 @@ export const settingsData: Record<string, SettingItem[]> = {
     },
   ],
 };
-

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import type { SettingItem } from "@/lib/types/settings";
 
 interface SettingListProps {
@@ -24,7 +24,7 @@ export function SettingList({ items }: SettingListProps) {
   }
 
   return (
-    <ul className="space-y-0" role="list">
+    <ul className="space-y-0">
       {items.map((item) => {
         const isExpanded = expandedId === item.id;
         return (
@@ -33,6 +33,7 @@ export function SettingList({ items }: SettingListProps) {
             className="border-b border-[#2B2B2B] hover:bg-[#232323] transition-colors"
           >
             <button
+              type="button"
               onClick={() => toggleExpand(item.id)}
               className="w-full text-left px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset rounded"
               aria-expanded={isExpanded}
@@ -59,13 +60,9 @@ export function SettingList({ items }: SettingListProps) {
               </div>
 
               {isExpanded && (
-                <ul
-                  id={`desc-${item.id}`}
-                  className="mt-3 ml-2 text-sm text-gray-300 space-y-1.5"
-                  role="list"
-                >
-                  {item.description.map((desc, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
+                <ul id={`desc-${item.id}`} className="mt-3 ml-2 text-sm text-gray-300 space-y-1.5">
+                  {item.description.map((desc) => (
+                    <li key={desc} className="flex items-start gap-2">
                       <span className="text-blue-400 mt-1 text-xs">•</span>
                       <span className="leading-relaxed">{desc}</span>
                     </li>
@@ -79,4 +76,3 @@ export function SettingList({ items }: SettingListProps) {
     </ul>
   );
 }
-

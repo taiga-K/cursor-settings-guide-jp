@@ -9,22 +9,19 @@ interface SidebarNavProps {
   onCategoryChange: (categoryId: string) => void;
 }
 
-export function SidebarNav({
-  categories,
-  currentCategory,
-  onCategoryChange,
-}: SidebarNavProps) {
+export function SidebarNav({ categories, currentCategory, onCategoryChange }: SidebarNavProps) {
   return (
     <nav className="space-y-1" aria-label="カテゴリナビゲーション">
       {categories.map((category) => (
         <button
+          type="button"
           key={category.id}
           onClick={() => onCategoryChange(category.id)}
           className={clsx(
             "w-full text-left px-4 py-3 rounded-lg transition-all relative",
             currentCategory === category.id
               ? "bg-blue-500/10 text-blue-400"
-              : "text-gray-400 hover:text-white hover:bg-gray-800"
+              : "text-gray-400 hover:text-white hover:bg-gray-800",
           )}
           aria-current={currentCategory === category.id ? "page" : undefined}
         >
@@ -37,4 +34,3 @@ export function SidebarNav({
     </nav>
   );
 }
-
