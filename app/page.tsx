@@ -163,12 +163,6 @@ export default function HomePage() {
                         でご確認ください
                       </span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-blue-400 mt-0.5 text-xs">•</span>
-                      <span className="leading-relaxed">
-                        Pro限定機能には「[Pro限定]」と表示されています
-                      </span>
-                    </li>
                   </ul>
                 </div>
               </div>

@@ -38,12 +38,26 @@ export function SettingList({ items }: SettingListProps) {
               aria-expanded={isExpanded}
               aria-controls={`desc-${item.id}`}
             >
-              <div className="flex items-baseline gap-2 flex-wrap">
-                <h3 className="text-white font-medium">{item.nameJa}</h3>
-                <span className="text-xs text-gray-500">{item.nameEn}</span>
-                {item.isPro && (
-                  <span className="text-xs text-gray-500">[Pro限定]</span>
-                )}
+              <div className="flex items-center gap-2">
+                <div className="min-w-0 flex-1 flex items-baseline gap-2">
+                  <h3 className="text-white font-medium">{item.nameJa}</h3>
+                  <span className="text-xs text-gray-500">{item.nameEn}</span>
+                  {item.isPro && (
+                    <span className="text-xs text-gray-500">[Pro限定]</span>
+                  )}
+                </div>
+                <span className="ml-2 inline-flex items-center gap-1 text-xs text-gray-400 bg-[#1E1E1E] px-2 py-0.5 rounded border border-[#2E2E2E]">
+                  <svg
+                    aria-hidden="true"
+                    viewBox="0 0 20 20"
+                    className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 10.06l3.71-2.83a.75.75 0 1 1 .92 1.18l-4.17 3.18a.75.75 0 0 1-.92 0L5.21 8.41a.75.75 0 0 1 .02-1.2z"
+                    />
+                  </svg>
+                </span>
               </div>
 
               {isExpanded && (

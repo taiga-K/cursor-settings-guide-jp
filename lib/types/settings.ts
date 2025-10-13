@@ -3,7 +3,6 @@ export interface SettingItem {
   nameJa: string;
   nameEn: string;
   description: string[];
-  isPro?: boolean;
 }
 
 export interface Category {
