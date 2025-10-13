@@ -39,12 +39,12 @@ export function SettingList({ items }: SettingListProps) {
               aria-expanded={isExpanded}
               aria-controls={`desc-${item.id}`}
             >
-              <div className="flex items-center gap-2">
-                <div className="min-w-0 flex-1 flex items-baseline gap-2">
+              <span className="flex items-center gap-2">
+                <span className="min-w-0 flex-1 flex items-baseline gap-2">
                   <h3 className="text-white font-medium">{item.nameJa}</h3>
                   <span className="text-xs text-gray-500">{item.nameEn}</span>
                   {/* isPro表示は廃止 */}
-                </div>
+                </span>
                 <span className="ml-2 inline-flex items-center gap-1 text-xs text-gray-400 bg-[#1E1E1E] px-2 py-0.5 rounded border border-[#2E2E2E]">
                   <svg
                     aria-hidden="true"
@@ -57,19 +57,22 @@ export function SettingList({ items }: SettingListProps) {
                     />
                   </svg>
                 </span>
-              </div>
-
-              {isExpanded && (
-                <ul id={`desc-${item.id}`} className="mt-3 ml-2 text-sm text-gray-300 space-y-1.5">
-                  {item.description.map((desc) => (
-                    <li key={desc} className="flex items-start gap-2">
-                      <span className="text-blue-400 mt-1 text-xs">•</span>
-                      <span className="leading-relaxed">{desc}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              </span>
             </button>
+            {isExpanded && (
+              <ul
+                id={`desc-${item.id}`}
+                className="mt-3 ml-2 text-sm text-gray-300 space-y-1.5"
+              >
+                {item.description.map((desc) => (
+                  <li key={desc} className="flex items-start gap-2">
+                    <span className="text-blue-400 mt-1 text-xs">•</span>
+                    <span className="leading-relaxed">{desc}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
           </li>
         );
       })}
