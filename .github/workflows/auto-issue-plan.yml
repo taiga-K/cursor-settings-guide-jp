@@ -33,7 +33,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cursor-agent -p "GitHub Actionsランナー上で動作しています。
-          GitHub CLIは`gh`として利用可能で、`GH_TOKEN`で認証されています。
+          GitHub CLIはghとして利用可能で、GH_TOKENで認証されています。
           あなたにはリポジトリコンテンツの読み込み、issueコメントの書き込み権限のみ与えられています。
 
           # コンテキスト
@@ -44,6 +44,7 @@ jobs:
           # 目標
           このIssueを解決するための計画を生成してください。
           実装にあたってリポジトリの必要な情報の取得、実装計画の立案はDeepWiki MCPを必ず使用して行ってください。
+          DeepWiki MCPを使って調査したことはログに残しておくこと。
 
           # 成果物
           計画をMarkdown形式で生成し、${{ github.event.issue.number }}にコメントを投稿してください
