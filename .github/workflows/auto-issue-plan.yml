@@ -40,11 +40,12 @@ jobs:
           Issue番号: ${{ github.event.issue.number }}
           Issueタイトル: ${{ github.event.issue.title }}
           Issue内容: ${{ github.event.issue.body }}
+          GitHubリポジトリ: ${{ github.repository }}
           
           # 目標
           このIssueを解決するための計画を生成してください。
-          実装にあたってリポジトリの必要な情報の取得、実装計画の立案はDeepWiki MCPを必ず使用して行ってください。
-          DeepWiki MCPを使って調査したことはログに残しておくこと。
+          実装にあたってリポジトリの必要な情報の取得、実装計画の立案は${{ github.repository }}に対してDeepWiki MCPを必ず使用して行ってください。
+          DeepWiki MCPを使って${{ github.repository }}の情報を調査したことはログに残しておくこと。
       
           # 成果物
           計画をMarkdown形式で生成してください
