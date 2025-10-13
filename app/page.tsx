@@ -45,37 +45,41 @@ export default function HomePage() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-4 mb-4">
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white hover:bg-gray-800 p-2 rounded"
-              aria-label="メニュー"
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? (
-                <span>✕</span>
-              ) : (
-                <span>≡</span>
-              )}
-            </button>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-center justify-between gap-4">
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden text-white hover:bg-gray-800 p-2 rounded"
+                aria-label="メニュー"
+                aria-expanded={isMobileMenuOpen}
+              >
+                {isMobileMenuOpen ? (
+                  <span>✕</span>
+                ) : (
+                  <span>≡</span>
+                )}
+              </button>
 
-            {/* Logo */}
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-bold">
-                C
-              </div>
-              <div>
-                <h1 className="text-lg font-semibold">
-                  Cursor Settings Guide JP
-                </h1>
-                <p className="text-xs text-gray-400">日本語設定リファレンス</p>
+              {/* Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center font-bold">
+                  C
+                </div>
+                <div>
+                  <h1 className="text-lg font-semibold">
+                    Cursor Settings Guide JP
+                  </h1>
+                  <p className="text-xs text-gray-400">日本語設定リファレンス</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Search Bar */}
-          <SearchBar value={searchQuery} onChange={handleSearchChange} />
+            {/* Search Bar - PCでは右寄せ */}
+            <div className="w-full lg:w-96 lg:ml-auto">
+              <SearchBar value={searchQuery} onChange={handleSearchChange} />
+            </div>
+          </div>
         </div>
       </header>
 

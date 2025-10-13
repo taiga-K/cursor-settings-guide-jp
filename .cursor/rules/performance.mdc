@@ -1,4 +1,5 @@
 ---
+description: "TypeScriptを使用したReactアプリケーションにおけるパフォーマンス最適化のガイドライン"
 globs: *.tsx,*.ts,*.js,*.jsx
 alwaysApply: false
 ---
