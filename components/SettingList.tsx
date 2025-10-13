@@ -59,10 +59,7 @@ export function SettingList({ items }: SettingListProps) {
               </span>
             </button>
             {isExpanded && (
-              <ul
-                id={`desc-${item.id}`}
-                className="mt-3 ml-2 text-sm text-gray-300 space-y-1.5"
-              >
+              <ul id={`desc-${item.id}`} className="mt-3 ml-2 text-sm text-gray-300 space-y-1.5">
                 {item.description.map((desc) => (
                   <li key={desc} className="flex items-start gap-2">
                     <span className="text-blue-400 mt-1 text-xs">•</span>
@@ -71,7 +68,6 @@ export function SettingList({ items }: SettingListProps) {
                 ))}
               </ul>
             )}
-          </li>
           </li>
         );
       })}
