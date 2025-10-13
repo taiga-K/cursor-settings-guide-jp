@@ -44,11 +44,6 @@ export function SettingList({ items }: SettingListProps) {
                 {item.isPro && (
                   <span className="text-xs text-gray-500">[Pro限定]</span>
                 )}
-                {item.category && (
-                  <span className="ml-auto text-xs text-gray-500 bg-[#1E1E1E] px-2 py-0.5 rounded border border-[#2E2E2E]">
-                    {item.category}
-                  </span>
-                )}
               </div>
 
               {isExpanded && (

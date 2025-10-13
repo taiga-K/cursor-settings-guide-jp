@@ -20,7 +20,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "editor-font-size",
       nameJa: "エディタのフォントサイズ",
       nameEn: "Editor Font Size",
-      category: "Preferences",
       description: [
         "エディタで表示されるコードのフォントサイズを調整できます",
         "デフォルト値は14pxです",
@@ -31,7 +30,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "theme",
       nameJa: "テーマ設定",
       nameEn: "Theme",
-      category: "Preferences",
       description: [
         "エディタの配色テーマを変更できます",
         "Light、Dark、システム設定に従うの3つから選択可能",
@@ -42,7 +40,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "auto-save",
       nameJa: "自動保存",
       nameEn: "Auto Save",
-      category: "Preferences",
       description: [
         "ファイルを自動的に保存するタイミングを設定します",
         "オプション：オフ、フォーカス変更時、遅延後",
@@ -53,7 +50,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "telemetry",
       nameJa: "テレメトリ",
       nameEn: "Telemetry",
-      category: "Privacy",
       description: [
         "使用状況データの送信を許可するかどうかを設定します",
         "オフにしても基本的な機能には影響しません",
@@ -64,7 +60,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "crash-reporting",
       nameJa: "クラッシュレポート",
       nameEn: "Crash Reporting",
-      category: "Privacy",
       description: [
         "アプリケーションのクラッシュ情報を開発チームに送信します",
         "品質向上に役立つため、可能な限り有効にすることを推奨",
@@ -77,7 +72,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "chat-model",
       nameJa: "チャットモデル",
       nameEn: "Chat Model",
-      category: "Model Selection",
       description: [
         "AI会話で使用するモデルを選択します",
         "GPT-4、Claude、その他のモデルから選択可能",
@@ -89,7 +83,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "chat-history",
       nameJa: "チャット履歴",
       nameEn: "Chat History",
-      category: "Privacy",
       description: [
         "チャット履歴を保存するかどうかを設定します",
         "履歴を有効にすると過去の会話を参照できます",
@@ -100,7 +93,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "context-length",
       nameJa: "コンテキスト長",
       nameEn: "Context Length",
-      category: "Performance",
       description: [
         "AIに送信するコンテキストの最大長を設定します",
         "長いほど多くの情報を参照できますが、処理時間が増加します",
@@ -112,7 +104,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "streaming",
       nameJa: "ストリーミング応答",
       nameEn: "Streaming Response",
-      category: "Performance",
       description: [
         "AI応答をリアルタイムで表示します",
         "有効にすると応答を待つ時間が短く感じられます",
@@ -125,7 +116,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "tab-autocomplete",
       nameJa: "Tab自動補完",
       nameEn: "Tab Autocomplete",
-      category: "Code Completion",
       description: [
         "Tabキーを押したときにAIがコードを自動補完します",
         "Cursorの最も強力な機能の一つです",
@@ -136,7 +126,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "tab-delay",
       nameJa: "Tab補完遅延",
       nameEn: "Tab Delay",
-      category: "Performance",
       description: [
         "自動補完が表示されるまでの遅延時間を設定します",
         "短くするとより早く提案が表示されます",
@@ -147,7 +136,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "multiline-suggestions",
       nameJa: "複数行の提案",
       nameEn: "Multiline Suggestions",
-      category: "Code Completion",
       description: [
         "複数行のコード提案を表示するかどうかを設定します",
         "有効にするとより大きなコードブロックが提案されます",
@@ -161,7 +149,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "default-model",
       nameJa: "デフォルトモデル",
       nameEn: "Default Model",
-      category: "Model Selection",
       description: [
         "デフォルトで使用するAIモデルを設定します",
         "タスクに応じて最適なモデルを選択できます",
@@ -172,7 +159,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "model-override",
       nameJa: "モデル上書き",
       nameEn: "Model Override",
-      category: "Advanced",
       description: [
         "特定の機能で使用するモデルを個別に設定できます",
         "チャット、Tab補完、エージェントでそれぞれ異なるモデルを使用可能",
@@ -184,7 +170,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "api-key",
       nameJa: "APIキー",
       nameEn: "API Key",
-      category: "Configuration",
       description: [
         "独自のAPIキーを使用する場合に設定します",
         "OpenAI、Anthropicなどのキーに対応",
@@ -197,7 +182,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "enable-agents",
       nameJa: "エージェントを有効化",
       nameEn: "Enable Background Agents",
-      category: "Core Settings",
       description: [
         "バックグラウンドでAIエージェントを実行します",
         "コードの問題を自動検出し、改善提案を行います",
@@ -209,7 +193,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "agent-frequency",
       nameJa: "エージェント実行頻度",
       nameEn: "Agent Frequency",
-      category: "Performance",
       description: [
         "エージェントがコードを分析する頻度を設定します",
         "高頻度：リアルタイムに近い分析",
@@ -223,7 +206,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "mcp-servers",
       nameJa: "MCPサーバー",
       nameEn: "MCP Servers",
-      category: "Configuration",
       description: [
         "Model Context Protocol（MCP）サーバーを設定します",
         "外部ツールやAPIとの統合を可能にします",
@@ -235,7 +217,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "tool-permissions",
       nameJa: "ツール権限",
       nameEn: "Tool Permissions",
-      category: "Security",
       description: [
         "各ツールのアクセス権限を管理します",
         "ファイルシステム、ネットワークへのアクセスを制御",
@@ -248,7 +229,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "custom-rules",
       nameJa: "カスタムルール",
       nameEn: "Custom Rules",
-      category: "Customization",
       description: [
         "プロジェクト固有のコーディング規約をAIに教えることができます",
         "チーム開発で統一されたスタイルを維持するのに便利",
@@ -259,7 +239,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "project-memory",
       nameJa: "プロジェクトメモリ",
       nameEn: "Project Memory",
-      category: "Context",
       description: [
         "プロジェクトの構造や慣習をAIが学習します",
         "繰り返し同じ説明をする必要がなくなります",
@@ -273,7 +252,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "codebase-indexing",
       nameJa: "コードベースのインデックス化",
       nameEn: "Codebase Indexing",
-      category: "Performance",
       description: [
         "プロジェクト全体をインデックス化して検索を高速化します",
         "大規模プロジェクトでAIの応答精度が向上します",
@@ -284,7 +262,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "docs-embedding",
       nameJa: "ドキュメント埋め込み",
       nameEn: "Documentation Embedding",
-      category: "Context",
       description: [
         "プロジェクトのドキュメントをAIが参照できるようにします",
         "README、Wiki、APIドキュメントなどを含めることができます",
@@ -298,7 +275,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "proxy-settings",
       nameJa: "プロキシ設定",
       nameEn: "Proxy Settings",
-      category: "Connection",
       description: [
         "プロキシサーバー経由で接続する場合に設定します",
         "企業ネットワーク環境で必要になることがあります",
@@ -309,7 +285,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "ssl-verification",
       nameJa: "SSL検証",
       nameEn: "SSL Verification",
-      category: "Security",
       description: [
         "SSL証明書の検証を有効化/無効化します",
         "セキュリティのため通常は有効にしてください",
@@ -322,7 +297,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "beta-features",
       nameJa: "ベータ機能",
       nameEn: "Beta Features",
-      category: "Experimental",
       description: [
         "実験的な新機能を試すことができます",
         "不安定な場合があるため、本番環境では注意してください",
@@ -333,7 +307,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "early-access",
       nameJa: "早期アクセス",
       nameEn: "Early Access",
-      category: "Experimental",
       description: [
         "正式リリース前の機能にアクセスできます",
         "新しいAIモデルや機能をいち早く試せます",
@@ -347,7 +320,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "official-docs",
       nameJa: "公式ドキュメント",
       nameEn: "Official Documentation",
-      category: "Resources",
       description: [
         "Cursor公式ドキュメントへのリンク",
         "最新の機能や使い方を確認できます",
@@ -358,7 +330,6 @@ export const settingsData: Record<string, SettingItem[]> = {
       id: "community",
       nameJa: "コミュニティ",
       nameEn: "Community",
-      category: "Resources",
       description: [
         "Cursorユーザーコミュニティへのリンク",
         "他のユーザーと情報交換ができます",

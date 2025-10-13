@@ -25,8 +25,7 @@ export default function HomePage() {
       (item) =>
         item.nameJa.toLowerCase().includes(query) ||
         item.nameEn.toLowerCase().includes(query) ||
-        item.description.some((desc) => desc.toLowerCase().includes(query)) ||
-        item.category?.toLowerCase().includes(query)
+        item.description.some((desc) => desc.toLowerCase().includes(query))
     );
   }, [currentCategory, searchQuery]);
 
