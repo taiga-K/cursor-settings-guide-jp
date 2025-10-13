@@ -43,7 +43,6 @@ export function SettingList({ items }: SettingListProps) {
                 <span className="min-w-0 flex-1 flex items-baseline gap-2">
                   <h3 className="text-white font-medium">{item.nameJa}</h3>
                   <span className="text-xs text-gray-500">{item.nameEn}</span>
-                  {/* isPro表示は廃止 */}
                 </span>
                 <span className="ml-2 inline-flex items-center gap-1 text-xs text-gray-400 bg-[#1E1E1E] px-2 py-0.5 rounded border border-[#2E2E2E]">
                   <svg
