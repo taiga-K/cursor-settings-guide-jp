@@ -1,0 +1,101 @@
+name: Auto Fix CI Failures
+
+on:
+  workflow_run:
+    # 監視対象のCIワークフロー名を指定
+    workflows: ["CI"]
+    types:
+      - completed
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+jobs:
+  attempt-fix:
+    # 失敗したワークフローのみ対象とし、このワークフロー自体は除外
+    if: >-
+      ${{ github.event.workflow_run.conclusion == 'failure' &&
+         github.event.workflow_run.name != 'Auto Fix CI Failures' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.workflow_run.head_branch }}
+
+      - name: Cursor CLIをインストール
+        run: |
+          curl https://cursor.com/install -fsSL | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: git identityを設定
+        run: |
+          git config user.name "Cursor Agent"
+          git config user.email "cursoragent@cursor.com"
+
+      - name: CI失敗を修正
+        env:
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+          MODEL: gpt-5
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_PREFIX: ci-fix
+          FAILED_WORKFLOW_RUN_ID: ${{ github.event.workflow_run.id }}
+          FAILED_WORKFLOW_NAME: ${{ github.event.workflow_run.name }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          # 修正用のブランチ名を生成
+          FIX_BRANCH="${BRANCH_PREFIX}/${{ github.event.workflow_run.head_branch }}-$(date +%s)"
+          
+          # 修正用ブランチを作成
+          git checkout -b "$FIX_BRANCH"
+          
+          # Cursor Agentを使用してCI失敗を修正
+          cursor-agent -p "GitHub Actionsランナー上で動作しています。
+          GitHub CLIはghとして利用可能で、GH_TOKENで認証されています。
+          gitは利用可能です。リポジトリコンテンツへの書き込み、PRへのコメントは可能ですが、PR自体の作成・編集は不可です。
+          
+          # コンテキスト
+          失敗したワークフロー: ${FAILED_WORKFLOW_NAME}
+          ワークフローRun ID: ${FAILED_WORKFLOW_RUN_ID}
+          元のブランチ: ${HEAD_BRANCH}
+          コミットSHA: ${HEAD_SHA}
+          GitHubリポジトリ: ${{ github.repository }}
+          
+          # 目標
+          CI失敗の原因を特定し、最小限の変更で修正してください。
+          
+          # タスク
+          1. 失敗したワークフローのログを確認: gh run view ${FAILED_WORKFLOW_RUN_ID} --log-failed
+          2. エラーの原因を分析
+          3. 必要最小限の修正を実施（リポジトリのコーディング規約に準拠）
+          4. 修正後、変更をコミット: git add . && git commit -m 'fix(ci): CI失敗を自動修正'
+          5. 修正ブランチをプッシュ: git push -u origin $FIX_BRANCH
+          6. 元のブランチへのPR作成URLを生成してログに出力:
+             echo 'Pull Request作成URL: https://github.com/${{ github.repository }}/compare/${HEAD_BRANCH}...${FIX_BRANCH}?quick_pull=1'
+          
+          # 注意事項
+          - 既存のテストやロジックは削除しないでください
+          - 設定ファイルやドキュメントの軽微な修正に留めてください
+          - 変更は最小限に抑え、CI失敗の原因のみを修正してください" --model "$MODEL" --output-format=text
+
+      - name: 修正結果をコメント投稿
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 修正の結果をissueまたはPRにコメント
+          ISSUE_OR_PR_NUMBER=$(gh pr list --head "${{ github.event.workflow_run.head_branch }}" --json number --jq '.[0].number')
+          
+          if [ -n "$ISSUE_OR_PR_NUMBER" ]; then
+            gh pr comment "$ISSUE_OR_PR_NUMBER" --body "🤖 CI失敗の自動修正を試みました。
+            
+            失敗したワークフロー: ${{ github.event.workflow_run.name }}
+            Run ID: ${{ github.event.workflow_run.id }}
+            
+            修正ブランチが作成された場合は、新しいPRを確認してください。"
+          fi
