@@ -1,0 +1,70 @@
+name: Auto Update Docs
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - '**.md'
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - '**.jsx'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-docs:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cursor CLIをインストール
+        run: |
+          curl https://cursor.com/install -fsSL | bash
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+
+      - name: git identityを設定
+        run: |
+          git config user.name "Cursor Agent"
+          git config user.email "cursoragent@cursor.com"
+
+      - name: ドキュメントを自動更新
+        env:
+          CURSOR_API_KEY: ${{ secrets.CURSOR_API_KEY }}
+          MODEL: gpt-5
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cursor-agent -p "GitHub Actionsランナー上で動作しています。
+          GitHub CLIはghとして利用可能で、GH_TOKENで認証されています。
+          Gitも利用可能です。
+          あなたにはリポジトリコンテンツへの書き込みアクセスとPRへのコメント権限がありますが、PR自体の作成・編集はできません。
+
+          # コンテキスト
+          リポジトリ: ${{ github.repository }}
+          リポジトリオーナー: ${{ github.repository_owner }}
+          PR番号: ${{ github.event.pull_request.number }}
+          ベースブランチ: ${{ github.base_ref }}
+          ヘッドブランチ: ${{ github.head_ref }}
+          ドキュメントブランチプレフィックス: docs
+
+          # 目標
+          PRによって引き起こされたドキュメントの自動更新フローをエンドツーエンドで実装してください。
+
+          # タスク
+          1. PRの変更内容を確認する
+          2. 変更に基づいてドキュメント（README.md等）が更新が必要か判断する
+          3. 必要であれば、ドキュメントを更新してコミット・プッシュする
+          4. 更新内容をPRにコメントで報告する
+
+          # 制約
+          - .cursor/agents/配下のファイルにはアクセスできません
+          - cursor-agent.permissions.jsonに従って動作してください
+          - 日本語でドキュメントを更新してください" --model "$MODEL" --output-format=text --permissions-file=cursor-agent.permissions.json

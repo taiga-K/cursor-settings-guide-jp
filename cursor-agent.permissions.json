@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "deny": [
+      "Shell(gh pr create)",
+      "Shell(gh pr edit)",
+      "Shell(gh pr close)",
+      "Shell(gh pr merge)",
+      "Write(.github/agents/**)",
+      "Write(.cursor/agents/**)",
+      "Write(package.json)",
+      "Write(package-lock.json)",
+      "Write(tsconfig.json)",
+      "Write(next.config.mjs)",
+      "Write(tailwind.config.ts)",
+      "Write(biome.json)",
+      "Write(postcss.config.js)"
+    ],
+    "allow": [
+      "Shell(git commit)",
+      "Shell(git push)",
+      "Shell(gh pr comment)",
+      "Write(README.md)",
+      "Write(**/*.md)",
+      "Read(**)"
+    ]
+  }
+}

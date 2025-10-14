@@ -44,3 +44,38 @@ http://localhost:3000 でアプリケーションが起動します。
 │       └── settings.ts   # 設定データ
 └── .cursor/rules/        # Cursorルール
 ```
+
+### GitHub Actions による自動ドキュメント更新
+
+このリポジトリでは、Pull Request時に自動的にドキュメントを更新するGitHub Actionsワークフローが設定されています。
+
+#### 機能
+
+- PRが作成・更新されると、Cursor CLIが自動的に変更内容を確認
+- 必要に応じてドキュメント（README.md等）を自動更新
+- 更新内容をPRにコメントで報告
+
+#### 設定ファイル
+
+- `.github/workflows/auto-update-docs.yml`: ワークフロー定義
+- `cursor-agent.permissions.json`: Cursor Agentの権限設定
+
+#### 必要な環境変数
+
+リポジトリのSecretsに以下を設定してください：
+
+- `CURSOR_API_KEY`: Cursor APIキー（[Cursor Dashboard](https://cursor.com/settings)で取得）
+
+#### トリガー条件
+
+以下の場合に自動実行されます：
+
+- PRがオープンされた時
+- PRが同期（更新）された時
+- PRが再オープンされた時
+- Draft状態から通常のPRに変更された時
+
+#### 参考リンク
+
+- [Cursor公式 Cookbook: update-docs](https://cursor.com/ja/docs/cli/cookbook/update-docs)
+- [Cursor CLI Documentation](https://cursor.com/docs/cli/overview)
