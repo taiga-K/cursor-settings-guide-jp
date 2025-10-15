@@ -39,8 +39,26 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Verify build output
+        run: |
+          echo "Build output directory structure:"
+          ls -la
+          if [ -d "out" ]; then
+            echo "out directory contents:"
+            ls -la out/
+          else
+            echo "out directory not found, checking for other build directories:"
+            ls -la | grep -E "(build|dist|public)"
+          fi
+
       - name: Add .nojekyll file
-        run: touch out/.nojekyll
+        run: |
+          if [ -d "out" ]; then
+            touch out/.nojekyll
+          else
+            echo "Error: out directory not found after build"
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
