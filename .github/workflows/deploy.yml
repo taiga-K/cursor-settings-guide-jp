@@ -2,7 +2,6 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-   push:
     branches: [ main ]
   workflow_dispatch:
 
@@ -13,14 +12,20 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -33,12 +38,11 @@ jobs:
 
       - name: Build project
         run: npm run build
+        env:
+          PUBLIC_URL: /cursor-settings-docs
 
       - name: Add .nojekyll file
         run: touch out/.nojekyll
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
