@@ -38,8 +38,6 @@ jobs:
 
       - name: Build project
         run: npm run build
-        env:
-          PUBLIC_URL: /cursor-settings-docs
 
       - name: Add .nojekyll file
         run: touch out/.nojekyll
